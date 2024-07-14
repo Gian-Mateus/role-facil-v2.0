@@ -11,21 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comments_and_ratings', function (Blueprint $table) {
-            $table->id('comment_rating_id');
-            $table->uuid('slug');
-            $table->text('comment');
-            $table->string('rating', 1);
-            $table->timestamps();
-
+        Schema::create('clients_coupons', function (Blueprint $table) {
+            
             //Foreing Keys
-            $table->foreignId('establishment_id')
-                    ->constrained('establishments', 'establishment_id')
+            $table->foreignId('client_id')
+                    ->constrained('clients', 'client_id')
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
                     
-            $table->foreignId('event_id')
-                    ->constrained('events', 'event_id')
+            $table->foreignId('coupon_id')
+                    ->constrained('coupons', 'coupon_id')
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
         });
@@ -36,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comments_and_ratings');
+        Schema::dropIfExists('clients_coupons');
     }
 };
