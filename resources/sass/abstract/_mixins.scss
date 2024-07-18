@@ -1,0 +1,55 @@
+// Mixin para fonte
+@mixin font($size, $weight: $font-weight-normal, $family: $font-family-base) {
+    font-size: $size;
+    font-weight: $weight;
+    font-family: $family;
+  }
+  
+  // Mixin para espaçamento
+  @mixin spacing($property, $size) {
+    #{$property}: map-get($spacers, $size);
+  }
+  
+  // Mixin para borda
+  @mixin border($width: $border-width, $color: $border-color, $radius: $border-radius) {
+    border-width: $width;
+    border-color: $color;
+    border-radius: $radius;
+    border-style: solid;
+  }
+  
+  // Mixin para sombra
+  @mixin box-shadow($shadow: $box-shadow) {
+    box-shadow: $shadow;
+  }
+  
+  // Mixin para transição
+  @mixin transition($transition: $transition-base) {
+    transition: $transition;
+  }
+  
+  // Mixin para breakpoints
+  @mixin respond-to($breakpoint) {
+    @if map-has-key($grid-breakpoints, $breakpoint) {
+      @media (min-width: map-get($grid-breakpoints, $breakpoint)) {
+        @content;
+      }
+    } @else {
+      @warn "Breakpoint '#{$breakpoint}' not found in $grid-breakpoints map.";
+    }
+  }
+  
+  // Mixin para container
+  @mixin container($max-width: $container-max-widths) {
+    width: 100%;
+    padding-right: $spacer;
+    padding-left: $spacer;
+    margin-right: auto;
+    margin-left: auto;
+  
+    @each $breakpoint, $width in $max-width {
+      @include respond-to($breakpoint) {
+        max-width: $width;
+      }
+    }
+  }

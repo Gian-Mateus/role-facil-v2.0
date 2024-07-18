@@ -1,17 +1,19 @@
 <?php
 
-namespace App\View\Components\ui;
+namespace App\View\Components\componentes\ui;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class input_range extends Component
+class button extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct(
+        public string $classes
+    )
     {
         //
     }
@@ -21,6 +23,6 @@ class input_range extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.ui.input_range');
+        return view('components.ui.button');
     }
 }
