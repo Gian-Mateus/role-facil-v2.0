@@ -12,7 +12,8 @@ class button extends Component
      * Create a new component instance.
      */
     public function __construct(
-        public string $classes
+        public string $variant,
+        public string $size
     )
     {
         //

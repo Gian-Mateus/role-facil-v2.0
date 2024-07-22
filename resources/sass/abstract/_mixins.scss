@@ -1,55 +1,75 @@
 // Mixin para fonte
+// @param {Number} $size - Tamanho da fonte
+// @param {Number} $weight - Peso da fonte (opcional, padrão: $font-weight-normal)
+// @param {String} $family - Família da fonte (opcional, padrão: $font-family-base)
 @mixin font($size, $weight: $font-weight-normal, $family: $font-family-base) {
-    font-size: $size;
-    font-weight: $weight;
-    font-family: $family;
-  }
-  
-  // Mixin para espaçamento
-  @mixin spacing($property, $size) {
-    #{$property}: map-get($spacers, $size);
-  }
-  
-  // Mixin para borda
-  @mixin border($width: $border-width, $color: $border-color, $radius: $border-radius) {
-    border-width: $width;
-    border-color: $color;
-    border-radius: $radius;
-    border-style: solid;
-  }
-  
-  // Mixin para sombra
-  @mixin box-shadow($shadow: $box-shadow) {
-    box-shadow: $shadow;
-  }
-  
-  // Mixin para transição
-  @mixin transition($transition: $transition-base) {
-    transition: $transition;
-  }
-  
-  // Mixin para breakpoints
-  @mixin respond-to($breakpoint) {
-    @if map-has-key($grid-breakpoints, $breakpoint) {
+  font-size: $size;
+  font-weight: $weight;
+  font-family: $family;
+}
+
+// Mixin para espaçamento
+// @param {String} $property - Propriedade CSS para aplicar o espaçamento (ex: margin, padding)
+// @param {String} $top - Tamanho do espaçamento para o topo, deve corresponder a uma chave no mapa $spacers
+// @param {String} $right - Tamanho do espaçamento para a direita, deve corresponder a uma chave no mapa $spacers
+// @param {String} $bottom - Tamanho do espaçamento para a base, deve corresponder a uma chave no mapa $spacers
+// @param {String} $left - Tamanho do espaçamento para a esquerda, deve corresponder a uma chave no mapa $spacers
+@mixin spacing($property, $top, $right: null, $bottom: null, $left: null) {
+  $top-value: map-get($spacers, $top);
+  $right-value: if($right != null, map-get($spacers, $right), $top-value);
+  $bottom-value: if($bottom != null, map-get($spacers, $bottom), $top-value);
+  $left-value: if($left != null, map-get($spacers, $left), $right-value);
+
+  #{$property}: #{$top-value} #{$right-value} #{$bottom-value} #{$left-value};
+}
+
+// Mixin para borda
+// @param {Number} $width - Largura da borda (opcional, padrão: $border-width)
+// @param {String} $color - Cor da borda (opcional, padrão: $border-color)
+// @param {Number} $radius - Raio da borda (opcional, padrão: $border-radius)
+@mixin border($width: $border-width, $color: $border-color, $radius: $border-radius) {
+  border-width: $width;
+  border-color: darken($color, 5%);
+  border-radius: $radius;
+  border-style: solid;
+}
+
+// Mixin para sombra
+// @param {String} $shadow - Valor da sombra (opcional, padrão: $box-shadow)
+@mixin box-shadow($shadow: $box-shadow) {
+  box-shadow: $shadow;
+}
+
+// Mixin para transição
+// @param {String} $transition - Valor da transição (opcional, padrão: $transition-base)
+@mixin transition($transition: $transition) {
+  transition: $transition;
+}
+
+// Mixin para breakpoints
+// @param {String} $breakpoint - Nome do breakpoint, deve corresponder a uma chave no mapa $grid-breakpoints
+@mixin respond-to($breakpoint) {
+  @if map-has-key($grid-breakpoints, $breakpoint) {
       @media (min-width: map-get($grid-breakpoints, $breakpoint)) {
-        @content;
+          @content;
       }
-    } @else {
+  } @else {
       @warn "Breakpoint '#{$breakpoint}' not found in $grid-breakpoints map.";
-    }
   }
-  
-  // Mixin para container
-  @mixin container($max-width: $container-max-widths) {
-    width: 100%;
-    padding-right: $spacer;
-    padding-left: $spacer;
-    margin-right: auto;
-    margin-left: auto;
-  
-    @each $breakpoint, $width in $max-width {
+}
+
+// Mixin para container
+// @param {Map} $max-width - Mapa de breakpoints e larguras máximas (opcional, padrão: $container-max-widths)
+@mixin container($max-width: $container-max-widths) {
+  width: 100%;
+  padding-right: $spacer;
+  padding-left: $spacer;
+  margin-right: auto;
+  margin-left: auto;
+
+  @each $breakpoint, $width in $max-width {
       @include respond-to($breakpoint) {
-        max-width: $width;
+          max-width: $width;
       }
-    }
   }
+}
