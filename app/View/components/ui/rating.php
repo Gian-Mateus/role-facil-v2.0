@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components\ui;
+namespace App\View\components\ui;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class navlink extends Component
+class rating extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class navlink extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.ui.navlink');
+        return view('components.ui.rating');
     }
 }

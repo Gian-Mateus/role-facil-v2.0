@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components\ui;
+namespace App\View\components\ui;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class input extends Component
+class navbar extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class input extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.ui.input');
+        return view('components.ui.navbar');
     }
 }

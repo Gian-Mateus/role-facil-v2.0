@@ -1,17 +1,20 @@
 <?php
 
-namespace App\View\Components\ui;
+namespace App\View\components\ui;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class collapse extends Component
+class button extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct(
+        public string $variant = "primary",
+        public string $size = "sm"
+    )
     {
         //
     }
@@ -21,6 +24,6 @@ class collapse extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.ui.collapse');
+        return view('components.ui.button');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\assets\svg;
+namespace App\View\assets\svg;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -21,6 +21,6 @@ class contact extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.assets.svg.contact');
+        return view('assets.svg.contact');
     }
 }

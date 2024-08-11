@@ -1,20 +1,17 @@
 <?php
 
-namespace App\View\Components\componentes\ui;
+namespace App\View\components\ui;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class button extends Component
+class navlink extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct(
-        public string $variant,
-        public string $size
-    )
+    public function __construct()
     {
         //
     }
@@ -24,6 +21,6 @@ class button extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.ui.button');
+        return view('components.ui.navlink');
     }
 }
