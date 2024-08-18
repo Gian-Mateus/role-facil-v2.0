@@ -12,8 +12,8 @@
     <title>Rolê Fácil</title>
 </head>
 <body>
-    <main class="container h-screen w-screen flex justify-center items-center">
-        <x-ui.button>Botão</x-ui.button>
+    <main class="container h-screen flex justify-center items-center">
+        <livewire:ui.carousel />
     </main>
 </body>
 </html>

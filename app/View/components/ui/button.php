@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\components\ui;
+namespace App\View\Components\Ui;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -11,10 +11,7 @@ class button extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(
-        public string $variant = "primary",
-        public string $size = "sm"
-    )
+    public function __construct()
     {
         //
     }

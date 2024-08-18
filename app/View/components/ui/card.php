@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\components\ui;
+namespace App\View\Components\Ui;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -14,8 +14,9 @@ class card extends Component
     public function __construct(
         public string $title,
         public string $description,
-        public string $imgURL,
-        public string $size
+        public string $srcImg,
+        public string $alt = '',
+        public string $size = "sm"
         )
     {
         //
